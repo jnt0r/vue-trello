@@ -2,30 +2,18 @@
     <div class="list-wrapper">
         <ListComponent v-for="list in lists" v-bind:key="list.name" v-bind:list="list" :remove-list="removeList"/>
 
-        <div class="list">
-            <md-card md-with-hover>
-                <md-card-content class="card">
-                    <md-field>
-                        <label>List name</label>
-                        <md-input v-model="newListName" v-on:keyup.enter="createList"></md-input>
-                    </md-field>
-                    <md-button class="md-primary md-icon-button" v-on:click="createList">
-                        <md-icon>add</md-icon>
-                    </md-button>
-                </md-card-content>
-            </md-card>
-        </div>
+        <CreateListComponent :add-list="createList" />
     </div>
 </template>
 
 <script>
     import ListComponent from "@/components/ListComponent";
+    import CreateListComponent from "@/components/CreateListComponent";
 
     export default {
-        components: {ListComponent},
+        components: {CreateListComponent, ListComponent},
         data() {
             return {
-                newListName: '',
                 lists: [
                     {
                         name: 'test',
@@ -41,11 +29,9 @@
             removeList(list) {
                 this.lists.splice(this.lists.indexOf(list), 1);
             },
-            createList() {
-                if (this.newListName !== '' && this.lists.filter(l => l.name === this.newListName).length === 0) {
-                    this.lists.push({name: this.newListName, cards: []});
-
-                    this.newListName = '';
+            createList(name) {
+                if (name !== '' && this.lists.filter(l => l.name === name).length === 0) {
+                    this.lists.push({name: name, cards: []});
                 }
             },
         },
@@ -85,15 +71,5 @@
     .list-wrapper .list > .md-card .md-card-content {
         max-height: 100%;
         overflow-y: auto;
-    }
-
-    .card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .card > .md-field {
-        flex: 1;
     }
 </style>
