@@ -2,7 +2,7 @@
     <div class="list">
         <md-card md-with-hover>
             <md-card-content class="card">
-                <md-field>
+                <md-field md-inline>
                     <label>List name</label>
                     <md-input v-model="newListName" v-on:keyup.enter="createList"></md-input>
                 </md-field>
@@ -16,7 +16,7 @@
 <script>
     export default {
         name: 'CreateListComponent',
-        props: ['addList'],
+        props: ['lists', 'afterCreationHook'],
         data() {
             return {
                 newListName: '',
@@ -24,9 +24,10 @@
         },
         methods: {
             createList() {
-                if (this.newListName !== '') {
-                    this.addList(this.newListName);
+                if (this.newListName !== '' && this.lists.filter(l => l.name === name).length === 0) {
+                    this.lists.push({name: this.newListName, cards: []});
                     this.newListName = '';
+                    this.afterCreationHook();
                 }
             }
         }

@@ -1,8 +1,8 @@
 <template>
-    <div class="list-wrapper">
+    <div class="list-wrapper" ref="listwrapper">
         <ListComponent v-for="list in lists" v-bind:key="list.name" v-bind:list="list" :remove-list="removeList"/>
 
-        <CreateListComponent :add-list="createList" />
+        <CreateListComponent v-bind:lists="lists" :after-creation-hook="scrollToNewList"/>
     </div>
 </template>
 
@@ -18,7 +18,22 @@
                     {
                         name: 'test',
                         cards: [
-                            {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'}, {name: 'Mach mal was'}, {name: 'Mach mal was anderes'},
+                            {id: 0, name: 'Mach mal was'},
+                            {id: 1, name: 'Mach mal was anderes'},
+                            {id: 2, name: 'Mach mal was'},
+                            {id: 3, name: 'Mach mal was anderes'},
+                            {id: 4, name: 'Mach mal was'},
+                            {id: 5, name: 'Mach mal was anderes'},
+                            {id: 6, name: 'Mach mal was'},
+                            {id: 7, name: 'Mach mal was anderes'},
+                            {id: 8, name: 'Mach mal was'},
+                            {id: 9, name: 'Mach mal was anderes'},
+                            {id: 10, name: 'Mach mal was'},
+                            {id: 11, name: 'Mach mal was anderes'},
+                            {id: 12, name: 'Mach mal was'},
+                            {id: 13, name: 'Mach mal was anderes'},
+                            {id: 14, name: 'Mach mal was'},
+                            {id: 15, name: 'Mach mal was anderes'}
                         ]
                     },
                     {name: 'abcd', cards: []}
@@ -29,11 +44,13 @@
             removeList(list) {
                 this.lists.splice(this.lists.indexOf(list), 1);
             },
-            createList(name) {
-                if (name !== '' && this.lists.filter(l => l.name === name).length === 0) {
-                    this.lists.push({name: name, cards: []});
-                }
-            },
+            scrollToNewList() {
+                this.$nextTick(() => {
+                    // Scroll to new card
+                    let el = this.$refs.listwrapper;
+                    el.scrollLeft = el.scrollWidth;
+                });
+            }
         },
     }
 </script>

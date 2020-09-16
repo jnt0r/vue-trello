@@ -26,8 +26,8 @@
                 </md-menu>
             </md-card-header>
 
-            <md-card-content>
-                <md-card v-for="card in list.cards" v-bind:key="card.name" md-with-hover>
+            <md-card-content ref="scrollablecontent">
+                <md-card v-for="card in list.cards" v-bind:key="card.id" md-with-hover>
                     <md-card-header>
                         <div class="md-body-2">{{ card.name }}</div>
                     </md-card-header>
@@ -35,7 +35,7 @@
             </md-card-content>
 
             <md-card-actions>
-                <md-field>
+                <md-field md-inline>
                     <label>Task name</label>
                     <md-input v-model="newTaskName" v-on:keyup.enter="createTask"></md-input>
                 </md-field>
@@ -60,6 +60,12 @@
                 if (this.newTaskName !== '') {
                     this.list.cards.push({name: this.newTaskName});
                     this.newTaskName = '';
+
+                    this.$nextTick(() => {
+                        // Scroll to new card
+                        let el = this.$refs.scrollablecontent.$el;
+                        el.scrollTop = el.scrollHeight;
+                    });
                 }
             }
         }
