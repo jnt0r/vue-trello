@@ -1,6 +1,6 @@
 <template>
     <div class="list">
-        <md-card md-with-hover>
+        <md-card md-with-hover class="list-card">
             <md-card-header>
                 <md-card-header-text>
                     <div class="md-title">{{ list.name }}</div>
@@ -95,7 +95,7 @@
         visibility: visible;
 
         opacity: 1 !important;
-        background: yellow !important;
+        /*background: yellow !important;*/
         cursor: pointer !important;
     }
 
@@ -107,12 +107,11 @@
         right: 0;
         bottom: 0;
         background: #555 !important;
-        border-radius: 20px;
     }
 
     .list .drag {
         opacity: 1 !important;
         cursor: pointer;
-        background: blue !important;
+        /*background: blue !important;*/
     }
 </style>

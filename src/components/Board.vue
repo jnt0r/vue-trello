@@ -1,19 +1,32 @@
 <template>
     <div class="list-wrapper" ref="listwrapper">
-        <ListComponent v-for="list in lists" :key="list.name" :list="list" :remove-list="removeList"/>
+        <draggable :list="lists" v-bind="dragOptions" group="lists" @start="drag=true" @end="drag=false" :emptyInsertThreshold="100" class="draggable-lists-wrapper">
+            <ListComponent v-for="list in lists" :key="list.name" :list="list" :remove-list="removeList"/>
+        </draggable>
 
         <CreateListComponent :lists="lists" :after-creation-hook="scrollToNewList"/>
     </div>
 </template>
 
 <script>
+    import draggable from 'vuedraggable';
+
     import ListComponent from "@/components/ListComponent";
     import CreateListComponent from "@/components/CreateListComponent";
 
     export default {
-        components: {CreateListComponent, ListComponent},
+        components: {draggable, CreateListComponent, ListComponent},
         data() {
             return {
+                dragOptions: {
+                    animation: 200,
+                    group: "description",
+                    disabled: false,
+                    ghostClass: "ghost",
+                    dragClass: "drag",
+                    chosenClass: "chosen",
+                    direction: 'horizontal',
+                },
                 lists: [
                     {
                         id: 0,
@@ -69,6 +82,11 @@
         overflow-x: auto;
         padding: 10px;
         overflow-y: hidden;
+    }
+
+    .draggable-lists-wrapper {
+        display: flex;
+        flex-direction: row;
     }
 
     .list-wrapper .list {
