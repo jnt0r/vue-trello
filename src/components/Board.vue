@@ -1,8 +1,8 @@
 <template>
     <div class="list-wrapper" ref="listwrapper">
-        <ListComponent v-for="list in lists" v-bind:key="list.name" v-bind:list="list" :remove-list="removeList"/>
+        <ListComponent v-for="list in lists" :key="list.name" :list="list" :remove-list="removeList"/>
 
-        <CreateListComponent v-bind:lists="lists" :after-creation-hook="scrollToNewList"/>
+        <CreateListComponent :lists="lists" :after-creation-hook="scrollToNewList"/>
     </div>
 </template>
 
@@ -16,6 +16,7 @@
             return {
                 lists: [
                     {
+                        id: 0,
                         name: 'test',
                         cards: [
                             {id: 0, name: 'Mach mal was'},
@@ -26,17 +27,20 @@
                             {id: 5, name: 'Mach mal was anderes'},
                             {id: 6, name: 'Mach mal was'},
                             {id: 7, name: 'Mach mal was anderes'},
-                            {id: 8, name: 'Mach mal was'},
-                            {id: 9, name: 'Mach mal was anderes'},
-                            {id: 10, name: 'Mach mal was'},
-                            {id: 11, name: 'Mach mal was anderes'},
-                            {id: 12, name: 'Mach mal was'},
-                            {id: 13, name: 'Mach mal was anderes'},
-                            {id: 14, name: 'Mach mal was'},
-                            {id: 15, name: 'Mach mal was anderes'}
+
                         ]
                     },
-                    {name: 'abcd', cards: []}
+                    {
+                        id: 1,
+                        name: 'abcd', cards: [
+                            {id: 16, name: 'Karte1'},
+                            {id: 17, name: 'Bin Karte 2'},
+                            {id: 18, name: 'Noch ne Karte'},
+                            {id: 19, name: 'Irgendwas anderes'},
+                        ]
+                    },
+                    {id: 2, name: 'abcd12', cards: []},
+                    {id: 3, name: 'abcd44', cards: []},
                 ]
             };
         },

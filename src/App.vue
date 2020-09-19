@@ -33,8 +33,4 @@
     h1 {
         text-align: center;
     }
-
-    Board {
-
-    }
 </style>

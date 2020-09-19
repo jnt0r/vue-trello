@@ -13,7 +13,7 @@
                     </md-button>
 
                     <md-menu-content>
-                        <md-menu-item @click="removeList">
+                        <md-menu-item @click="removeList(list)">
                             <span>Delete</span>
                             <md-icon>delete</md-icon>
                         </md-menu-item>
@@ -27,11 +27,15 @@
             </md-card-header>
 
             <md-card-content ref="scrollablecontent">
-                <md-card v-for="card in list.cards" v-bind:key="card.id" md-with-hover>
-                    <md-card-header>
-                        <div class="md-body-2">{{ card.name }}</div>
-                    </md-card-header>
-                </md-card>
+                <draggable :list="list.cards" v-bind="dragOptions" group="cards" @start="drag=true" @end="drag=false" :emptyInsertThreshold="100">
+<!--                    <transition-group type="transition" name="flip-list" >-->
+                        <md-card v-for="card in list.cards" :key="card.id" md-with-hover>
+                            <md-card-header>
+                                <div class="md-body-2">{{ card.name }}</div>
+                            </md-card-header>
+                        </md-card>
+<!--                    </transition-group>-->
+                </draggable>
             </md-card-content>
 
             <md-card-actions>
@@ -47,18 +51,29 @@
     </div>
 </template>
 <script>
+    import draggable from 'vuedraggable';
+
     export default {
         name: 'ListComponent',
+        components: {draggable},
         props: ['list', 'removeList'],
         data() {
             return {
-                newTaskName: ''
+                newTaskName: '',
+                dragOptions: {
+                    animation: 200,
+                    group: "description",
+                    disabled: false,
+                    ghostClass: "ghost",
+                    dragClass: "drag",
+                    chosenClass: "chosen",
+                },
             }
         },
         methods: {
             createTask() {
                 if (this.newTaskName !== '') {
-                    this.list.cards.push({name: this.newTaskName});
+                    this.list.cards.push({name: this.newTaskName, id: 999});
                     this.newTaskName = '';
 
                     this.$nextTick(() => {
@@ -71,3 +86,33 @@
         }
     }
 </script>
+<style scoped>
+    .flip-list-move {
+        transition: transform 0s;
+    }
+
+    .list .chosen {
+        visibility: visible;
+
+        opacity: 1 !important;
+        background: yellow !important;
+        cursor: pointer !important;
+    }
+
+    .list .ghost:before {
+        content: '';
+        position: absolute;;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #555 !important;
+        border-radius: 20px;
+    }
+
+    .list .drag {
+        opacity: 1 !important;
+        cursor: pointer;
+        background: blue !important;
+    }
+</style>
