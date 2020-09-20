@@ -1,15 +1,15 @@
 <template>
     <div class="list">
         <md-card md-with-hover>
-            <md-card-content class="card">
-                <md-field md-inline>
+            <md-card-actions class="card">
+                <md-field md-inline md-clearable>
                     <label>List name</label>
                     <md-input v-model="newListName" v-on:keyup.enter="createList"></md-input>
                 </md-field>
                 <md-button class="md-primary md-icon-button" v-on:click="createList">
                     <md-icon>add</md-icon>
                 </md-button>
-            </md-card-content>
+            </md-card-actions>
         </md-card>
     </div>
 </template>

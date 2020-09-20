@@ -4,7 +4,6 @@
             <md-card-header>
                 <md-card-header-text>
                     <div class="md-title">{{ list.name }}</div>
-                    <!--                    <div class="md-subhead">Subtitle here</div>-->
                 </md-card-header-text>
 
                 <md-menu md-size="big" md-direction="bottom-end">
@@ -27,19 +26,20 @@
             </md-card-header>
 
             <md-card-content ref="scrollablecontent">
-                <draggable :list="list.cards" v-bind="dragOptions" group="cards" @start="drag=true" @end="drag=false" :emptyInsertThreshold="100">
-<!--                    <transition-group type="transition" name="flip-list" >-->
-                        <md-card v-for="card in list.cards" :key="card.id" md-with-hover>
-                            <md-card-header>
-                                <div class="md-body-2">{{ card.name }}</div>
-                            </md-card-header>
-                        </md-card>
-<!--                    </transition-group>-->
+                <draggable :list="list.cards" v-bind="dragOptions" group="cards" @start="drag=true" @end="drag=false"
+                           :emptyInsertThreshold="100">
+                    <!--                    <transition-group type="transition" name="flip-list" >-->
+                    <md-card v-for="card in list.cards" :key="card.id" md-with-hover>
+                        <md-card-header>
+                            <div class="md-body-2">{{ card.name }}</div>
+                        </md-card-header>
+                    </md-card>
+                    <!--                    </transition-group>-->
                 </draggable>
             </md-card-content>
 
             <md-card-actions>
-                <md-field md-inline>
+                <md-field md-inline md-clearable>
                     <label>Task name</label>
                     <md-input v-model="newTaskName" v-on:keyup.enter="createTask"></md-input>
                 </md-field>
@@ -92,8 +92,6 @@
     }
 
     .list .chosen {
-        visibility: visible;
-
         opacity: 1 !important;
         /*background: yellow !important;*/
         cursor: pointer !important;
