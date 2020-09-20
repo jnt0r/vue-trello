@@ -29,11 +29,7 @@
                 <draggable :list="list.cards" v-bind="dragOptions" group="cards" @start="drag=true" @end="drag=false"
                            :emptyInsertThreshold="100">
                     <!--                    <transition-group type="transition" name="flip-list" >-->
-                    <md-card v-for="card in list.cards" :key="card.id" md-with-hover>
-                        <md-card-header>
-                            <div class="md-body-2">{{ card.name }}</div>
-                        </md-card-header>
-                    </md-card>
+                    <Card v-for="card in list.cards" :key="card.id" :card="card"/>
                     <!--                    </transition-group>-->
                 </draggable>
             </md-card-content>
@@ -52,10 +48,11 @@
 </template>
 <script>
     import draggable from 'vuedraggable';
+    import Card from "@/components/Card";
 
     export default {
         name: 'ListComponent',
-        components: {draggable},
+        components: {Card, draggable},
         props: ['list', 'removeList'],
         data() {
             return {
