@@ -83,30 +83,32 @@
         }
     }
 </script>
-<style scoped>
+<style lang="scss" scoped>
     .flip-list-move {
         transition: transform 0s;
     }
 
-    .list .chosen {
-        opacity: 1 !important;
-        /*background: yellow !important;*/
-        cursor: pointer !important;
-    }
+    .list {
+        .chosen {
+            opacity: 1 !important;
+            /*background: yellow !important;*/
+            cursor: pointer !important;
+        }
 
-    .list .ghost:before {
-        content: '';
-        position: absolute;;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #555 !important;
-    }
+        .ghost:before {
+            content: '';
+            position: absolute;;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #555 !important;
+        }
 
-    .list .drag {
-        opacity: 1 !important;
-        cursor: pointer;
-        /*background: blue !important;*/
+        .drag {
+            opacity: 1 !important;
+            cursor: pointer;
+            /*background: blue !important;*/
+        }
     }
 </style>

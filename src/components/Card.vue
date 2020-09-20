@@ -37,13 +37,13 @@
         }
     }
 </script>
-<style scoped>
+<style lang="scss" scoped>
     .md-card-header .md-field {
         padding-top: 0;
         margin: 0 0 8px;
-    }
 
-    .md-card-header .md-field .md-textarea {
-        padding: 8px !important;
+        .md-textarea {
+            padding: 8px !important;
+        }
     }
 </style>
