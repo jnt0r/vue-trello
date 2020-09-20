@@ -9,7 +9,7 @@
                     <md-textarea v-model="card.name"></md-textarea>
                 </md-field>
                 <md-button class="md-raised md-primary" @click="showEditCard = false">Save</md-button>
-                <md-button class="md-raised md-accent" @click="cancelEdit">Abbrechen</md-button>
+                <md-button class="md-raised md-accent" @click="cancelEdit">Cancel</md-button>
             </template>
         </md-card-header>
     </md-card>
