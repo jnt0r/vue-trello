@@ -30,30 +30,31 @@
                 lists: [
                     {
                         id: 0,
-                        name: 'test',
+                        name: 'List 1',
                         cards: [
-                            {id: 0, name: 'Mach mal was'},
-                            {id: 1, name: 'Mach mal was anderes'},
-                            {id: 2, name: 'Mach mal was'},
-                            {id: 3, name: 'Mach mal was anderes'},
-                            {id: 4, name: 'Mach mal was'},
-                            {id: 5, name: 'Mach mal was anderes'},
-                            {id: 6, name: 'Mach mal was'},
-                            {id: 7, name: 'Mach mal was anderes'},
+                            {id: 0, name: 'Do something'},
+                            {id: 1, name: 'Do something else'},
+                            {id: 2, name: 'Finish work'},
+                            {id: 3, name: 'Write documentation'},
+                            {id: 4, name: 'Calculate costs'},
+                            {id: 5, name: 'Update dependencies'},
+                            {id: 6, name: 'Recalculate costs'},
+                            {id: 7, name: 'Do some other work'},
 
                         ]
                     },
                     {
                         id: 1,
-                        name: 'abcd', cards: [
-                            {id: 16, name: 'Karte1'},
-                            {id: 17, name: 'Bin Karte 2'},
-                            {id: 18, name: 'Noch ne Karte'},
-                            {id: 19, name: 'Irgendwas anderes'},
+                        name: 'List 2',
+                        cards: [
+                            {id: 16, name: 'Some other card'},
+                            {id: 17, name: 'Random text'},
+                            {id: 18, name: 'Think about something'},
+                            {id: 19, name: 'Another one'},
                         ]
                     },
-                    {id: 2, name: 'abcd12', cards: []},
-                    {id: 3, name: 'abcd44', cards: []},
+                    {id: 2, name: 'List 3', cards: []},
+                    {id: 3, name: 'List 4', cards: []},
                 ]
             };
         },
