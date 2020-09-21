@@ -1,6 +1,7 @@
 <template>
     <div class="list-wrapper" ref="listwrapper">
-        <draggable :list="lists" v-bind="dragOptions" group="lists" @start="drag=true" @end="drag=false" :emptyInsertThreshold="100" class="draggable-lists-wrapper">
+        <draggable :list="lists" v-bind="dragOptions" group="lists" @start="drag=true" @end="drag=false"
+                   :emptyInsertThreshold="100" class="draggable-lists-wrapper">
             <ListComponent v-for="list in lists" :key="list.name" :list="list" :remove-list="removeList"/>
         </draggable>
 
@@ -126,5 +127,28 @@
     .draggable-lists-wrapper {
         display: flex;
         flex-direction: row;
+
+        .chosen > .md-card {
+            opacity: 1 !important;
+            /*background: yellow !important;*/
+            cursor: pointer !important;
+        }
+
+        .ghost > .md-card:before {
+            content: '';
+            position: absolute;;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            background: #555 !important;
+        }
+
+        .drag .md-card {
+            opacity: 1 !important;
+            cursor: pointer;
+            /*background: blue !important;*/
+        }
     }
 </style>
