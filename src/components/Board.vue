@@ -130,13 +130,12 @@
 
         .chosen > .md-card {
             opacity: 1 !important;
-            /*background: yellow !important;*/
             cursor: pointer !important;
         }
 
         .ghost > .md-card:before {
             content: '';
-            position: absolute;;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
@@ -148,7 +147,6 @@
         .drag .md-card {
             opacity: 1 !important;
             cursor: pointer;
-            /*background: blue !important;*/
         }
     }
 </style>
