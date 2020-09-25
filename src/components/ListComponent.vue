@@ -29,7 +29,7 @@
                 <draggable :list="list.cards" v-bind="dragOptions" group="cards" @start="drag=true" @end="drag=false"
                            :emptyInsertThreshold="100">
                     <!--                    <transition-group type="transition" name="flip-list" >-->
-                    <Card v-for="card in list.cards" :key="card.id" :card="card"/>
+                    <Card v-for="card in list.cards" :key="card.id" :card="card" :delete-card="deleteCard"/>
                     <!--                    </transition-group>-->
                 </draggable>
             </md-card-content>
@@ -79,6 +79,9 @@
                         el.scrollTop = el.scrollHeight;
                     });
                 }
+            },
+            deleteCard(card) {
+                this.list.cards.splice(this.list.cards.indexOf(card), 1);
             }
         }
     }

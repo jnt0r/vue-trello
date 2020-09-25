@@ -1,8 +1,16 @@
 <template>
-    <md-card md-with-hover>
+    <md-card md-with-hover
+             @mouseenter.native="isHover = true"
+             @mouseleave.native="isHover = false">
         <md-card-header>
             <template v-if="!showEditCard">
-                <div class="md-body-2" @dblclick="showEditCard = true">{{ card.name }}</div>
+                <md-card-header-text>
+                    <div class="md-body-2" @dblclick="showEditCard = true">{{ card.name }}
+                    </div>
+                </md-card-header-text>
+                <md-button class="md-icon-button" v-show="isHover" @click="deleteCard(card)">
+                    <md-icon>delete</md-icon>
+                </md-button>
             </template>
             <template v-else>
                 <md-field>
@@ -19,11 +27,13 @@
         name: 'Card',
         props: {
             card: {},
+            deleteCard: {},
         },
         data() {
             return {
                 showEditCard: false,
                 uneditedName: '',
+                isHover: false,
             };
         },
         methods: {
@@ -38,12 +48,20 @@
     }
 </script>
 <style lang="scss" scoped>
-    .md-card-header .md-field {
-        padding-top: 0;
-        margin: 0 0 8px;
+    .md-card-header {
+        .md-field {
+            padding-top: 0;
+            margin: 0 0 8px;
 
-        .md-textarea {
-            padding: 8px !important;
+            .md-textarea {
+                padding: 8px !important;
+            }
+        }
+
+        .md-icon-button {
+            width: 24px;
+            min-width: 24px;
+            height: 24px;
         }
     }
 </style>
