@@ -27,7 +27,7 @@
 
             <md-card-content ref="scrollablecontent">
                 <draggable :list="list.cards" v-bind="dragOptions" group="cards" @start="drag=true" @end="drag=false"
-                           :emptyInsertThreshold="100">
+                           :emptyInsertThreshold="100" filter=".disable-dragging">
                     <!--                    <transition-group type="transition" name="flip-list" >-->
                     <Card v-for="card in list.cards" :key="card.id" :card="card" :delete-card="deleteCard"/>
                     <!--                    </transition-group>-->

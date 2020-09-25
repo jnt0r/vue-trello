@@ -1,7 +1,8 @@
 <template>
     <md-card md-with-hover
-             @mouseenter.native="isHover = true"
-             @mouseleave.native="isHover = false">
+            @mouseenter.native="isHover = true"
+            @mouseleave.native="isHover = false"
+             :class="{'disable-dragging': showEditCard}">
         <md-card-header>
             <template v-if="!showEditCard">
                 <md-card-header-text>
